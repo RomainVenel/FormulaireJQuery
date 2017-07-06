@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        margin: 0;
+      }
+      #gauche {
+        float: left;
+        width: 70%;
+        height: 1000px;
+        background-color: #EFECCA;
+      }
+      #droite {
+        background-color: #CEFFF8;
+        height: 1000px;
+        padding : 10px;
+        padding-left: 71%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gauche">
+        <span id="spanGauche"></span>
+        <input class="inputGauche" hidden></input>
+        <button id="boutonGauche"></button>
+    </div>
+    <div id="droite">
+      Utilisez ces boutons pour créer votre formulaire<br><br>
+      <button id="label">Label</button>
+      <button id="texte">Zone de texte</button>
+      <button id="bouton">Bouton</button>
+        <div id="divLabel" hidden>
+            <br>
+            <hr><br><br>
+            <label>Nom du label : </label>
+            <input id="inputLabel"></input>
+            <button id="okLabel">Ok</button>
+        </div>
+        <div id="divInput" hidden>
+            <br>
+            <hr><br><br>
+            <label>Id de la zone de texte : </label>
+            <input id="inputInput"></input>
+            <button id="okInput">Ok</button>
+        </div>
+        <div id="divBoutton" hidden>
+            <br>
+            <hr><br><br>
+            <label>Texte du bouton : </label>
+            <input id="inputBoutton"></input>
+            <button id="okBoutton">Ok</button>
+        </div>
+        
+    </div>
+    
+      
+      
+    
+    <script src="jquery.js"></script>
+
+    <script>
+        $(function(){
+            
+            $('.inputGauche').after('<br><br>');
+            
+            //Apparition bloc caché du label
+            $("#label").click(function() {
+                if ($('#divLabel').is(':hidden')){
+                    $('#divLabel').fadeIn();
+                }else{
+                    $('#divLabel').fadeOut();
+                }
+
+                //En cliquant sur 'ok'
+                $("#okLabel").click(function()  {
+
+                    $('#divLabel').fadeOut();
+                    //Récupération de la valeur du label saisi
+                    var nomLabel = $('#inputLabel').val();
+                    //Remplacement du span par cette valeur
+                    $('#spanGauche').html(nomLabel);                   
+                })
+
+            })
+            
+            //Apparition bloc caché de l'input
+            $("#texte").click(function() {
+                if ($('#divInput').is(':hidden')){
+                    $('#divInput').fadeIn();
+                }else{
+                    $('#divInput').fadeOut();
+                }
+                
+                //En cliquant sur 'ok'
+                $("#okInput").click(function()  {
+                    
+                    $('#divInput').fadeOut();
+                    //Récupération de la valeur de l'input saisi
+                    var nomInput = $('#inputInput').val();
+                    //Remplacement de l'id de l'input par cette valeur
+                    $('.inputGauche').attr('id',nomInput);
+                    
+                    $('#'+nomInput).show();
+                })
+                
+            })
+            
+            //Apparition bloc caché du bouton
+            $('#bouton').click(function() {
+                if ($('#divBoutton').is(':hidden')){
+                    $('#divBoutton').fadeIn();
+                }else{
+                    $('#divBoutton').fadeOut();
+                }
+            
+                //En cliquant sur 'ok'
+                $('#okBoutton').click(function() {
+
+                    $('#divBoutton').fadeOut();
+                    //Récupération de la valeur saisi
+                    var nomBoutton = $('#inputBoutton').val();
+                    //Remplacement du label du boutton par cette valeur
+                    $('#boutonGauche').html(nomBoutton);
+                })
+            
+            })
+            
+        });
+    </script>
+      
+  </body>
+</html>
