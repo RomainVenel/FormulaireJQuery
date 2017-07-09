@@ -22,9 +22,9 @@
   </head>
   <body>
     <div id="gauche">
-        <span id="spanGauche"></span>
-        <input class="inputGauche" hidden></input>
-        <button id="boutonGauche"></button>
+        <!--<span id="spanGauche"></span>-->
+        <!--<input class="inputGauche" hidden></input>-->
+        <!--<button id="boutonGauche"></button>-->
     </div>
     <div id="droite">
       Utilisez ces boutons pour créer votre formulaire<br><br>
@@ -45,12 +45,12 @@
             <input id="inputInput"></input>
             <button id="okInput">Ok</button>
         </div>
-        <div id="divBoutton" hidden>
+        <div id="divBouton" hidden>
             <br>
             <hr><br><br>
             <label>Texte du bouton : </label>
-            <input id="inputBoutton"></input>
-            <button id="okBoutton">Ok</button>
+            <input id="inputBouton"></input>
+            <button id="okBouton">Ok</button>
         </div>
         
     </div>
@@ -63,8 +63,6 @@
     <script>
         $(function(){
             
-            $('.inputGauche').after('<br><br>');
-            
             //Apparition bloc caché du label
             $("#label").click(function() {
                 if ($('#divLabel').is(':hidden')){
@@ -73,16 +71,26 @@
                     $('#divLabel').fadeOut();
                 }
 
-                //En cliquant sur 'ok'
-                $("#okLabel").click(function()  {
-
-                    $('#divLabel').fadeOut();
-                    //Récupération de la valeur du label saisi
-                    var nomLabel = $('#inputLabel').val();
-                    //Remplacement du span par cette valeur
-                    $('#spanGauche').html(nomLabel);                   
-                })
-
+            })
+            
+            //En cliquant sur 'ok'
+            $('#okLabel').click(function() {
+                          
+            //Récupération de la valeur saisi
+            var nomLabel = $('#inputLabel').val();
+            
+            //Création de l'input avec les attributs correspondants
+            $('<label>', {
+                id: nomLabel,
+                text: nomLabel   
+            }).appendTo('#gauche');
+            
+            //Disparition de la div
+            $('#divLabel').fadeOut();
+            
+            //Deux sauts de ligne après chaque input
+            //$('#'+nomLabel).after('<br><br>');
+                               
             })
             
             //Apparition bloc caché de l'input
@@ -93,38 +101,56 @@
                     $('#divInput').fadeOut();
                 }
                 
-                //En cliquant sur 'ok'
-                $("#okInput").click(function()  {
-                    
-                    $('#divInput').fadeOut();
-                    //Récupération de la valeur de l'input saisi
-                    var nomInput = $('#inputInput').val();
-                    //Remplacement de l'id de l'input par cette valeur
-                    $('.inputGauche').attr('id',nomInput);
-                    
-                    $('#'+nomInput).show();
-                })
-                
+            })
+            
+            //En cliquant sur 'ok'
+            $('#okInput').click(function() {
+                          
+            //Récupération de la valeur saisi
+            var nomInput = $('#inputInput').val();
+            
+            //Création de l'input avec les attributs correspondants
+            $('<input>', {
+                id: nomInput,
+                text: nomInput   
+            }).appendTo('#gauche');
+            
+            //Disparition de la div
+            $('#divInput').fadeOut();
+            
+            //Deux sauts de ligne après chaque input
+            $('#'+nomInput).after('<br><br>');
+                               
             })
             
             //Apparition bloc caché du bouton
             $('#bouton').click(function() {
-                if ($('#divBoutton').is(':hidden')){
-                    $('#divBoutton').fadeIn();
+                if ($('#divBouton').is(':hidden')){
+                    $('#divBouton').fadeIn();
                 }else{
-                    $('#divBoutton').fadeOut();
+                    $('#divBouton').fadeOut();
                 }
             
-                //En cliquant sur 'ok'
-                $('#okBoutton').click(function() {
-
-                    $('#divBoutton').fadeOut();
-                    //Récupération de la valeur saisi
-                    var nomBoutton = $('#inputBoutton').val();
-                    //Remplacement du label du boutton par cette valeur
-                    $('#boutonGauche').html(nomBoutton);
-                })
+            })
             
+            //En cliquant sur 'ok'
+            $('#okBouton').click(function() {
+                          
+            //Récupération de la valeur saisi
+            var nomBouton = $('#inputBouton').val();
+            
+            //Création du bouton avec les attributs correspondants
+            $('<button>', {
+                id: nomBouton,
+                text: nomBouton   
+            }).appendTo('#gauche');
+            
+            //Disparition de la div
+            $('#divBouton').fadeOut();
+            
+            //Ajout de 5 espaces entre chaque bouton
+            $('#'+nomBouton).after('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+                               
             })
             
         });
